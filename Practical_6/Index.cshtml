@@ -1,0 +1,50 @@
+@model IEnumerable<Practical6Mvc.Models.Product>
+
+@{
+    ViewBag.Title = "Product Catalog";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 32px; color: #222; }
+        table { border-collapse: collapse; width: 100%; max-width: 900px; }
+        th, td { border: 1px solid #bbb; padding: 10px; text-align: left; }
+        th { background: #f2f2f2; }
+        a { color: #0645ad; }
+    </style>
+</head>
+<body>
+    <h2>Product Catalog</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td>@product.ProductName</td>
+                <td>@product.Description</td>
+                <td>@product.Price.ToString("N2")</td>
+                <td>@product.Category</td>
+                <td>@Html.ActionLink("View Details", "Details", "Product", new { id = product.ProductId }, null)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</body>
+</html>
